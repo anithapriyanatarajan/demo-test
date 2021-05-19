@@ -1,0 +1,84 @@
+swagger: '2.0'
+info:
+  title: login-redoc
+  version: '1.0'
+  description: Authenticate to get JWT
+host: 'engine.service.uatb:1111'
+schemes:
+  - http
+produces:
+  - application/json
+consumes:
+  - application/json
+paths:
+  /login:
+    post:
+      summary: ''
+      operationId: post-login
+      responses:
+        '200':
+          description: OK
+          schema:
+            description: ''
+            type: object
+            properties:
+              userid:
+                type: string
+                minLength: 1
+              username:
+                type: string
+                minLength: 1
+              rolename:
+                type: string
+                minLength: 1
+              jwt:
+                type: string
+                minLength: 1
+            required:
+              - userid
+              - username
+              - rolename
+              - jwt
+            x-examples:
+              example-1:
+                userid: 5aab795e-6bae-46b0-a4c7-6c0d6ec1ef08
+                username: pc-cust01-admin
+                rolename: Customer Admin
+                jwt: >-
+                  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2MjE2NTY2MzUsInJvbGUiOiJyb2xlXzAyIiwidXNlcm5hbWUiOiJwYy1jdXN0MDEtYWRtaW4ifQ.kGIo8IkYrTE_25fvsmBufuD7EUeRDf9R8AteXuz3R6s
+          examples:
+            example-1:
+              userid: 5aab795e-6bae-46b0-a4c7-6c0d6ec1ef08
+              username: pc-cust01-admin
+              rolename: Customer Admin
+              jwt: >-
+                eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2MjE2NTY2MzUsInJvbGUiOiJyb2xlXzAyIiwidXNlcm5hbWUiOiJwYy1jdXN0MDEtYWRtaW4ifQ.kGIo8IkYrTE_25fvsmBufuD7EUeRDf9R8AteXuz3R6s
+      description: Authenticate to get JWT
+      parameters:
+        - type: string
+          in: header
+          name: Content-Type
+          description: application/json
+        - in: body
+          name: body
+          schema:
+            description: ''
+            type: object
+            properties:
+              organisationName:
+                type: string
+                minLength: 1
+            required:
+              - organisationName
+            x-examples:
+              example-1:
+                organisationName: pc-cust01
+          description: Specify the customer Account Name
+          x-examples:
+            example-1:
+              organisationName: pc-cust01
+definitions: {}
+securityDefinitions:
+  API Key - 1:
+    type: basic
+basePath: /protocloud
